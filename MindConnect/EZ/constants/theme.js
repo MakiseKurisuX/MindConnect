@@ -10,9 +10,9 @@ const COLORS = {
   lightWhite: "#FAFAFC",
 
   mentalGreen: "#3CB043",
-  green: "5DBB63",
-  green2: "466D1D",
-  green3: "AEF359",
+  fernGreen: "#0DBB63",
+  oliveGreen: "#466D1D",
+  limeGreen: "#AEF359",
 };
 
 const FONT = {
