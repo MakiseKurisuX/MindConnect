@@ -34,7 +34,7 @@ export default function Page() {
             flex: 1,
             padding: SIZES.medium
           }}>
-            <Text>Welcome aboard!</Text>
+            <Text>Welcome!</Text>
         </View>
       </ScrollView>
 
