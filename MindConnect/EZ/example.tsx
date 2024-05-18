@@ -18,7 +18,7 @@ export default function Index() {
             <BusStops />
             <NavigationTab />
         </View>
-    );
+    );dasdsadasdasda
 }
 
 const Header = () => {
