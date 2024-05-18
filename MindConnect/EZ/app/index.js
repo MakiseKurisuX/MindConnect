@@ -1,13 +1,13 @@
 import { Text, View, ScrollView, SafeAreaView } from 'react-native';
 import { Stack, useRouter, Link } from 'expo-router';
-import { PrismaClient } from "@prisma/client";
+//import { PrismaClient } from "@prisma/client";
 import { useState } from 'react';
 
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 
 
-const prisma = new PrismaClient({});
+//const prisma = new PrismaClient({});
 
 export default function Page() {
   const router = useRouter();
