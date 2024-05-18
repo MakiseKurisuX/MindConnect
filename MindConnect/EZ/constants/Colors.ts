@@ -5,7 +5,7 @@
 
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
-const mentalHealthGreen = '#3CB043';
+
 
 export const Colors = {
   light: {
