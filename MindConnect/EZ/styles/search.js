@@ -52,7 +52,18 @@ const styles = StyleSheet.create({
         fontFamily: FONT.bold,
         fontSize: SIZES.medium,
         color: COLORS.primary
+    },
+    scrollView: {
+        flex: 1,
+        padding: SIZES.medium
     }
 });
 
-export default styles;
+const zackStyles = StyleSheet.create({
+    mainBg : {
+        flex: 1,
+        backgroundColor: COLORS.mentalGreen
+    }
+});
+
+export { styles, zackStyles };
