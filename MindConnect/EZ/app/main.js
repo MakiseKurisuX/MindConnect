@@ -34,7 +34,15 @@ export default function Page() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
           <Text style={styles.paginationText}>
-            THIS IS THE INFOBANK PAGE
+            Welcome! Introducing MindConnect or MC, an application that gives people struggling
+            with mental-health related issues a platform at their fingertips to reach out to someone
+            to talk with and seek help and guidance.
+          </Text>
+          <Text style={styles.paginationText}>
+            {"\n"}
+            MindConnect boasts 4 prominent features, namely an information bank, a place to chat with peers,
+            a story tab and video consults with certified counsellors. Furthermore, there are two more supporting
+            features, the ability to sign up as a counsellor or peer and voice consultations with counsellors.
           </Text>
         </View>
         <Image 
