@@ -2,6 +2,7 @@ import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
 import { Stack, useRouter, Link } from 'expo-router';
 import { useState } from 'react';
 import * as React from 'react';
+import MentalHealth from '../components/infobank/mentalhealth';
 
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
@@ -33,15 +34,10 @@ export default function Page() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
-          <Text style={styles.paginationText}>
-            THIS IS THE INFOBANK PAGE
-          </Text>
+          <MentalHealth />
         </View>
-        <Image 
-          source={{ uri: "https://img.freepik.com/premium-photo/beautiful-nature-images-nature-wallpaper-landscapes-nature-pictures_859052-430.jpg" }}
-          style={{ height: 300, width: 400 }}
-        />
       </ScrollView>
+      
     </SafeAreaView>
   );
 }
