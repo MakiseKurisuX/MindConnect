@@ -6,8 +6,7 @@ import InfobankScreen from './infobank';
 import Chat from './chat';  
 import Consult from './consult';  
 import StoryScreen from './story';  
-import MainScreen from './main';  
-import { NavigationContainer } from '@react-navigation/native';
+import MainScreen from './main';
 
 const Tab = createBottomTabNavigator();
 
