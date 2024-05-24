@@ -1,4 +1,4 @@
-import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
+import { Text, View, ScrollView, SafeAreaView, TextInput, Button, Image } from 'react-native';
 import { Stack, useRouter, Link } from 'expo-router';
 import { useState } from 'react';
 import * as React from 'react';
@@ -12,6 +12,59 @@ import { styles, zackStyles } from '../styles';
 
 export default function Page() {
   const router = useRouter();
+
+  const YourComponent = () => {
+    return (
+    <View style={{ flex: 1}}>
+    {/* RecyclerView equivalent in React Native is FlatList */}
+     <View style = {{flexDirection: "column"}}>
+      <ScrollView style={{height:500, width:360, backgroundColor: COLORS.lightWhite}}>
+        <Text style = {{padding: 10}}>
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+          Here is where messages will appear in chat.
+        </Text>
+      </ScrollView>
+      <View style = {{flexDirection: "row"}}>
+        <TextInput
+          style={{ height: 'auto', width: 0, flexGrow: 1 }}
+          placeholder="Type a message"
+        />
+        <Button
+          title="Send"
+        // Add your Button props here
+        />
+      </View>
+      </View>
+    </View>
+    );
+  };
+
+
 
   return (
     <SafeAreaView style={zackStyles.mainBg}>
@@ -31,16 +84,13 @@ export default function Page() {
         }}
       />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.scrollView}>
+      <ScrollView>
+        <View style = {{alignItems: "center"}}>
           <Text style={styles.paginationText}>
-            THIS IS THE CONSULT PAGE
+            CHAT WITH PEER
           </Text>
         </View>
-        <Image 
-          source={{ uri: "https://img.freepik.com/premium-photo/beautiful-nature-images-nature-wallpaper-landscapes-nature-pictures_859052-430.jpg" }}
-          style={{ height: 300, width: 400 }}
-        />
+        <YourComponent/>
       </ScrollView>
     </SafeAreaView>
   );
