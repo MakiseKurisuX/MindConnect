@@ -50,6 +50,7 @@ export default function App() {
             return <Image source={iconSource} style={{ width: size, height: size }} />;
           },
         })}
+        //color when focused and not focused
         tabBarOptions={{
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',

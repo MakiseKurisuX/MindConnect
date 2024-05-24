@@ -9,7 +9,7 @@ const COLORS = {
   white: "#F3F4F8",
   lightWhite: "#FAFAFC",
 
-  mentalGreen: "#3CB043",
+  mainGreen: "#DBFFB1",
   fernGreen: "#0DBB63",
   oliveGreen: "#466D1D",
   limeGreen: "#AEF359",

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 const zackStyles = StyleSheet.create({
     mainBg : {
         flex: 1,
-        backgroundColor: COLORS.mentalGreen
+        backgroundColor: COLORS.mainGreen
     }
 });
 

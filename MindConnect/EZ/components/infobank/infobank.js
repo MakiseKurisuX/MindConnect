@@ -3,13 +3,14 @@ import { View } from 'react-native';
 import { Divider, Text } from 'react-native-paper';
 import MentalHealth from './mentalhealth';
 import MentalIllness from './mentalillness';
+import { COLORS } from '../../constants';
 
 const InfoBank = () => (
   <View>
     <MentalHealth />
-    <Divider />
+    <Divider  style={{backgroundColor: COLORS.oliveGreen}}/>
     <MentalIllness />
-    <Divider />
+    <Divider  style={{backgroundColor: COLORS.oliveGreen}}/>
   </View>
 );
 
