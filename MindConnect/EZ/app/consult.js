@@ -34,7 +34,7 @@ export default function Page() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
           <Text style={styles.paginationText}>
-            THIS IS THE STORY PAGE
+            THIS IS THE CHAT PAGE
           </Text>
         </View>
         <Image 

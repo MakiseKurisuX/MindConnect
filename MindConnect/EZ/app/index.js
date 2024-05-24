@@ -1,56 +1,67 @@
-import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
-import { Stack, useRouter, Link } from 'expo-router';
-//import { PrismaClient } from "@prisma/client";
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import InfobankScreen from './infobank';  
+import Chat from './chat';  
+import Consult from './consult';  
+import StoryScreen from './story';  
+import MainScreen from './main';  
+import { NavigationContainer } from '@react-navigation/native';
 
-import { COLORS, icons, images, SIZES } from '../constants';
-import { ScreenHeaderBtn } from '../components';
-import { styles, zackStyles } from '../styles';
+const Tab = createBottomTabNavigator();
 
+export default function App() {
 
-//const prisma = new PrismaClient({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-export default function Page() {
-  const router = useRouter();
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
-    <SafeAreaView style = {zackStyles.mainBg}>
-      <Stack.Screen
-        options={{
-          headerStyle: { backgroundColor: COLORS.lightWhite},
-          headerShadowVisible: false,
-          headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-          ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
-          ),
-          headerTitle: () => (
-            <Text style = {{color: COLORS.oliveGreen, fontSize:20}}>MINDCONNECT</Text>
-          )
+    <NavigationContainer independent={true}>
+      <Tab.Navigator 
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconSource;
+
+            if (route.name === 'Home') {
+              iconSource = focused
+                ? require('../assets/images/AppIcon.png')        // focused
+                : require('../assets/images/AppIcon.png');
+            } else if (route.name === 'InfoBank') {
+              iconSource = focused
+                ? require('../assets/images/Info_Bank.png')    // focused
+                : require('../assets/images/Info_Bank.png');
+            } else if (route.name === 'Chat') {
+              iconSource = focused
+                ? require('../assets/images/Chat.png')       // focused
+                : require('../assets/images/Chat.png');
+            } else if (route.name === 'Consult') {
+              iconSource = focused
+                ? require('../assets/images/Video_Consult.png')       // focused
+                : require('../assets/images/Video_Consult.png');
+            } else if (route.name === 'Story') {
+              iconSource = focused
+                ? require('../assets/images/Story.png')       // focused
+                : require('../assets/images/Story.png');
+            }
+
+            return <Image source={iconSource} style={{ width: size, height: size }} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
         }}
-      />
-
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={styles.scrollView}>
-            <Text style={styles.paginationText}>
-            Welcome! Introducing MindConnect or MC, an application that gives people struggling
-            with mental-health related issues a platform at their fingertips to reach out to someone
-            to talk with and seek help and guidance.
-            </Text>
-            <Text style={styles.paginationText}>
-            {"\n"}
-            MindConnect boasts 4 prominent features, namely an information bank, a place to chat with peers,
-            a story tab and video consults with certified counsellors. Furthermore, there are two more supporting
-            features, the ability to sign up as a counsellor or peer and voice consultations with counsellors.
-            </Text>
-        </View>
-        <Image source = {{uri: "https://img.freepik.com/premium-photo/beautiful-nature-images-nature-wallpaper-landscapes-nature-pictures_859052-430.jpg"}}
-               style = {{height:300, width:400}}
-        />
-      </ScrollView>
-
-    </SafeAreaView>
-  )
+      >
+        <Tab.Screen name="Home" component={MainScreen} />
+        <Tab.Screen name="InfoBank" component={InfobankScreen} />
+        <Tab.Screen name="Chat" component={Chat} />
+        <Tab.Screen name="Consult" component={Consult} />
+        <Tab.Screen name="Story" component={StoryScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
 }
