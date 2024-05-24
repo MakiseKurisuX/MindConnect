@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "444214507037",
+    "project_id": "mindconnect-218f4",
+    "storage_bucket": "mindconnect-218f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444214507037:android:0b7f1dd8e3575d69cdb8f4",
+        "android_client_info": {
+          "package_name": "com.example.MindConnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLr9nwwOzd1smNTivbhHZuFcIzHJoRgEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
