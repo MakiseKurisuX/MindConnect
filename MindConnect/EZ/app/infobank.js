@@ -2,7 +2,7 @@ import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
 import { Stack, useRouter, Link } from 'expo-router';
 import { useState } from 'react';
 import * as React from 'react';
-import MentalHealth from '../components/infobank/mentalhealth';
+import InfoBank from '../components/infobank/infobank';
 
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
@@ -34,10 +34,10 @@ export default function Page() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
-          <MentalHealth />
+          <InfoBank />
         </View>
       </ScrollView>
-      
+
     </SafeAreaView>
   );
 }

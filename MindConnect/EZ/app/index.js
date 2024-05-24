@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import InfobankScreen from './infobank';  // Ensure the correct path
-import Chat from './chat';  // Ensure the correct path
-import Consult from './consult';  // Ensure the correct path
-import StoryScreen from './story';  // Ensure the correct path
-import MainScreen from './main';  // Ensure the correct path
+import InfobankScreen from './infobank';  
+import Chat from './chat';  
+import Consult from './consult';  
+import StoryScreen from './story';  
+import MainScreen from './main';  
+import { NavigationContainer } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator 
@@ -40,7 +48,6 @@ export default function App() {
                 : require('../assets/images/Story.png');
             }
 
-            // You can return any component that you like here!
             return <Image source={iconSource} style={{ width: size, height: size }} />;
           },
         })}
