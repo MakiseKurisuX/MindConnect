@@ -1,6 +1,11 @@
-import { Text } from 'react-native';
-import { Link } from 'expo-router';
+import React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
+import LoginPage from '../components/login/loginPage';
 
-export default function Page() {
-  return <Text>Hello from the Login Page!</Text>;
+export default function Login() {
+  return (
+    <PaperProvider>
+      <LoginPage />
+    </PaperProvider>
+  );
 }

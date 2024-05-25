@@ -3,11 +3,7 @@ import { Surface, Text } from 'react-native-paper';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Login from '../../app/login'; 
-import Register from '../../app/register';
-
 const Surf = () => {
-
     const navigation = useNavigation();
 
     return (
