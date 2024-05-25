@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Surface, Text } from 'react-native-paper';
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Surf = () => {
@@ -8,6 +8,11 @@ const Surf = () => {
 
     return (
         <View style={styles.container}>
+            <ImageBackground
+            source={require('../../assets/images/Surf.png')}
+            style={styles.bigSurface}
+            imageStyle={{ borderRadius: 60 }}
+            >
             <Surface style={styles.bigSurface} elevation={4}>
                 <View style={styles.row}>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
@@ -42,6 +47,7 @@ const Surf = () => {
                     </Surface>
                 </View>
             </Surface>
+        </ImageBackground>
         </View>
     )
 };
@@ -56,20 +62,22 @@ const styles = StyleSheet.create({
     },
     bigSurface: {
         padding: 8,
-        borderRadius: 10,
+        borderRadius: 5,
+        backgroundColor: "transparent",
     },
     row: {
         flexDirection: 'row',
-        marginBottom: 16,
+        marginBottom: 5,
+        padding: 12,
     },
     surface: {
         padding: 8,
-        height: 80,
+        height: 60,
         width: 150,
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 8,
-        borderRadius: 10,
+        borderRadius: 20,
     },
     image: {
         width: 50,
