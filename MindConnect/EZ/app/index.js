@@ -74,9 +74,9 @@ export default function App() {
           options={{ headerShown: false }} 
         />
         <Stack.Screen 
-          name="Register" 
+          name="Register"
           component={Register} 
-          options={{ title: 'Register' }} 
+          options={{ title: 'Register' }}
         />
         <Stack.Screen
           name="Login"

@@ -15,6 +15,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@emailjs/react-native": "^4.2.2",
     "@expo/vector-icons": "^14.0.0",
     "@prisma/client": "^5.14.0",
     "@react-native-firebase/app": "^19.3.0",
