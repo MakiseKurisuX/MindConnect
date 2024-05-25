@@ -22,7 +22,7 @@ const Surf = () => {
                     <Surface style={styles.surface} elevation={4}>
                         <View style={styles.row}>
                             <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                            <Text>Register</Text>
+                            <Text>Register as Counseller</Text>
                         </View>
                     </Surface>
                     </TouchableOpacity>

@@ -12,6 +12,7 @@ import StoryScreen from './story';
 import Login from './login';
 import Register from './register';
 import Main from './main';
+import EntryDetail from './EntryDetail';
 //import { Main } from 'next/document';
 
 const Tab = createBottomTabNavigator();
@@ -63,15 +64,6 @@ function AppTabs() {
   );
 }
 
-function MainScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Main Screen</Text>
-      <Button title="Go to Another Screen" onPress={() => navigation.navigate('AnotherScreen')} />
-    </View>
-  );
-}
-
 export default function App() {
   return (
     <NavigationContainer independent={true}>
@@ -90,6 +82,11 @@ export default function App() {
           name="Login"
           component={Login}
           options={{ title: 'Login' }}
+        />
+        <Stack.Screen
+          name="EntryDetail"
+          component={EntryDetail}
+          options={{ title: 'Entry Detail' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,9 +1,8 @@
-import { Text, View, ScrollView, SafeAreaView, Image, FlatList } from 'react-native';
+import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
 import { Stack, useRouter, Link } from 'expo-router';
 import { useState } from 'react';
 import * as React from 'react';
-import InfoBank from '../components/infobank/infobank';
-import InfoBank2 from '../components/infobank/infobank1';
+import Detail from '../components/infobank/detail';
 
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
@@ -12,8 +11,9 @@ import { styles, zackStyles } from '../styles';
 
 //const prisma = new PrismaClient({});
 
-export default function Page() {
+export default function EntryDetail({ route }) {
   const router = useRouter();
+  const { entry } = route.params;
 
   return (
     <SafeAreaView style={zackStyles.mainBg}>
@@ -35,9 +35,8 @@ export default function Page() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
-          <InfoBank />
+        <Detail entry={entry} />
         </View>
-        <InfoBank2 />
       </ScrollView>
 
     </SafeAreaView>
