@@ -37,6 +37,7 @@ export default function Page() {
         <View style={styles.scrollView}>
           <InfoBank />
         </View>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', paddingLeft: 16 }}>Blog</Text>
         <InfoBank2 />
       </ScrollView>
 
