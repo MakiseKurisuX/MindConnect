@@ -1,9 +1,33 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Linking } from 'react-native';
 import { Text, Surface } from 'react-native-paper';
 
 const Detail = ({ entry }) => {
   const descriptionLines = entry.description.split('\n');
+
+  //This is a function that determines if the content is empty and also if it is a link (if yes, can click and change style)
+  const renderContentIfNotEmpty = (content, key) => {
+    //check if content empty
+    if (content && content.trim().length > 1) {
+      // if not empty, check if the content is a URL
+      const isUrl = content.startsWith('http://') || content.startsWith('https://');
+      if (isUrl) {
+      return (
+        <Text
+        key={key}
+        //takes style of both content and link. Then use the Linking to openURL of the content
+        style={[styles.content, styles.link]}
+        onPress={() => Linking.openURL(content)}
+        >
+        {content}
+        </Text>
+      );
+      } else {
+      return <Text key={key} style={styles.content}>{content}</Text>;
+      }
+    }
+    return null;
+    };
 
   return (
     <View style={styles.container}>
@@ -17,7 +41,14 @@ const Detail = ({ entry }) => {
             {line}
           </Text>
         ))}
-        <Text style={styles.content}>{entry.content}</Text>
+        {renderContentIfNotEmpty(entry.content, 'content')}
+        {renderContentIfNotEmpty(entry.content1, 'content1')}
+        {renderContentIfNotEmpty(entry.content2, 'content2')}
+        {renderContentIfNotEmpty(entry.content3, 'content3')}
+        {renderContentIfNotEmpty(entry.content4, 'content4')}
+        {renderContentIfNotEmpty(entry.content5, 'content5')}
+        {renderContentIfNotEmpty(entry.content6, 'content6')}
+        {renderContentIfNotEmpty(entry.final, 'final')}
       </Surface>
     </View>
   );
@@ -43,7 +74,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 200,
-    marginVertical: 16,
+    marginVertical: 10,
   },
   description: {
     fontSize: 16,
@@ -51,7 +82,12 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 16,
+    paddingBottom: 8,
   },
+  link: {
+    color: "blue",
+    textDecorationLine: "underline",
+  }
 });
 
 export default Detail;
