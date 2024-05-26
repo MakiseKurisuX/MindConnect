@@ -46,11 +46,12 @@ export default function Page() {
           <View style={enhancedStyles.featuresList}>
             <Text style={enhancedStyles.featureItem}>1. An information bank</Text>
             <Text style={enhancedStyles.featureItem}>2. A place to chat with peers</Text>
-            <Text style={enhancedStyles.featureItem}>3. A story tab</Text>
-            <Text style={enhancedStyles.featureItem}>4. Video consults with certified counsellors</Text>
+            <Text style={enhancedStyles.featureItem}>3. Video consults with certified counsellors</Text>
+            <Text style={enhancedStyles.featureItem}>4. A story tab</Text>
+
           </View>
           <Text style={enhancedStyles.additionalFeaturesText}>
-            Furthermore, there are two more supporting features, the ability to sign up as a counsellor or peer and voice consultations with counsellors.
+            Furthermore, there are two more supporting features, the ability to sign up as a counsellor or peer and voice consultations with counsellors. Get started now!
           </Text>
         </View>
         <Image 
