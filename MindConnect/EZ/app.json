@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/AppIcon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.zacklow28.MindConnect"
@@ -27,7 +27,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/AppIcon.png"
     },
     "plugins": [
       "expo-router"
@@ -47,7 +47,7 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/69d25956-b759-4ec8-9129-9ce2f263fbe0?runtime-version=1.0.0&channel-name=production&platform=android"
+      "url": "https://u.expo.dev/69d25956-b759-4ec8-9129-9ce2f263fbe0"
     }
   }
 }
