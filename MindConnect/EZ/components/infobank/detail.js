@@ -5,17 +5,13 @@ import { Text, Surface } from 'react-native-paper';
 const Detail = ({ entry }) => {
   const descriptionLines = entry.description.split('\n');
 
-  //This is a function that determines if the content is empty and also if it is a link (if yes, can click and change style)
   const renderContentIfNotEmpty = (content, key) => {
-    //check if content empty
     if (content && content.trim().length > 1) {
-      // if not empty, check if the content is a URL
       const isUrl = content.startsWith('http://') || content.startsWith('https://');
       if (isUrl) {
       return (
         <Text
         key={key}
-        //takes style of both content and link. Then use the Linking to openURL of the content
         style={[styles.content, styles.link]}
         onPress={() => Linking.openURL(content)}
         >
@@ -78,7 +74,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
-    marginBottom: 8, // Add margin to separate lines
+    marginBottom: 8, 
   },
   content: {
     fontSize: 16,
