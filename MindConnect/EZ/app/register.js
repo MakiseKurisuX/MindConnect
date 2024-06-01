@@ -33,8 +33,8 @@ const Register = () => {
     <View style={styles.container}>
       <Card style={styles.card}>
         <Card.Content>
-          <Title>Register to be a Counseller</Title>
-          <Paragraph>Please enter your details to register to be a counseller.</Paragraph>
+          <Title>Register to be a Counsellor</Title>
+          <Paragraph>Please enter your details to register to be a counsellor.</Paragraph>
           <TextInput
             label="First Name"
             value={firstName}
@@ -87,12 +87,15 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 16,
+    backgroundColor: '#E0F8E0', // Light lime green background
   },
   input: {
     marginBottom: 16,
+    backgroundColor: '#e3ffed', // Light green background for input
   },
   button: {
     marginTop: 16,
+    backgroundColor: '#006b26', // Dark green button
   },
 });
 

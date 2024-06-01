@@ -3,7 +3,7 @@
     "name": "MindConnect",
     "slug": "MindConnect",
     "description": "MindConnect, or MC serves as an all-in-one mental-health companion, giving you reliable information, a supportive community, inspirational stories and professional counselling, in one application, which is easily accessible on your mobile devices.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/AppIcon.png",
     "scheme": "myapp",
