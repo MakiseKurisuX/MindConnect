@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert, Image } from 'react-native';
 import { TextInput, Button, Card, Title, Paragraph } from 'react-native-paper';
 import emailjs from 'emailjs-com';
 
@@ -31,6 +31,10 @@ const Register = () => {
 
   return (
     <View style={styles.container}>
+      <Image 
+        source={require('../images/AppIcon.png')} 
+        style={styles.logo}
+      />
       <Card style={styles.card}>
         <Card.Content>
           <Title>Register to be a Counsellor</Title>
@@ -84,6 +88,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
     backgroundColor: '#fff',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+    marginBottom: 16,
   },
   card: {
     padding: 16,

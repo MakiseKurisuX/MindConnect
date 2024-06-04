@@ -1,8 +1,9 @@
-import React from 'react';
+import react from 'react';
 import { Image, Button, View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { AuthProvider, AuthContext } from '../contexts/AuthContext';
 
 // Import your screens
 import InfobankScreen from './infobank';
@@ -64,7 +65,7 @@ function AppTabs() {
   );
 }
 
-export default function App() {
+function AppNavigator() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
@@ -90,6 +91,14 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppNavigator />
+    </AuthProvider>
   );
 }
 
