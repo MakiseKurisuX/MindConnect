@@ -22,6 +22,10 @@ const LoginPage = () => {
       });
   };
 
+  const handleRegisterNavigation = () => {
+    navigation.navigate('Register');
+  };
+
   return (
     <View style={styles.container}>
       <Image 
@@ -54,6 +58,9 @@ const LoginPage = () => {
           <Button mode="contained" onPress={handleLogin} style={styles.button}>
             Login
           </Button>
+          <TouchableOpacity onPress={handleRegisterNavigation}>
+            <Text style={styles.registerText}>If you do not have an account, please register by clicking this</Text>
+          </TouchableOpacity>
         </Card.Content>
       </Card>
     </View>
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 16,
-    backgroundColor: '#E0F8E0', // Light lime green background
+    backgroundColor: '#E0F8E0', 
   },
   input: {
     marginBottom: 16,
@@ -84,7 +91,13 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 16,
     backgroundColor: '#006b26', 
-  }
+  },
+  registerText: {
+    marginTop: 16,
+    color: '#006400', 
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });
 
 export default LoginPage;

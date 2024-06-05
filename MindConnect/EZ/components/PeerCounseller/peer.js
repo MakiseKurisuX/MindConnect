@@ -1,37 +1,28 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Alert, Image, ScrollView } from 'react-native';
-import { TextInput, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebaseConfig';
-import { doc, setDoc } from 'firebase/firestore';
+//import emailjs from 'emailjs-com';
 
-const Register = () => {
+/*const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [age, setAge] = useState('');
 
   const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        setDoc(doc(db, 'Users', user.uid), {
-          firstName,
-          lastName,
-          email,
-          role: 'user'
-        })
-        .then(() => {
-          Alert.alert("Success", "Registration successful!");
-        })
-        .catch((error) => {
-          console.error("Firestore Error:", error);
-          Alert.alert("Error", "Failed to save user details. Please try again.");
-        });
+    const templateParams = {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      age,
+    };
+
+    emailjs.send('service_dm5skog', 'template_8m7o0mg', templateParams, 'pTYwjX4ZDqcpHSaqK')
+      .then((response) => {
+        Alert.alert("Success", "Registration has been sent! Please wait up to 3 working days and check your email to see if you have been accepted or not!");
       })
       .catch((error) => {
-        console.error("Firebase Auth Error:", error);
-        Alert.alert("Error", error.message || "Failed to register. Please try again.");
+        console.error("EmailJS Error:", error); // Log error to console
+        Alert.alert("Error", error.text || "Failed to send registration details. Please try again."); // Display error message in alert
       });
   };
 
@@ -59,6 +50,13 @@ const Register = () => {
               style={styles.input}
             />
             <TextInput
+              label="Phone Number"
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              style={styles.input}
+              keyboardType="phone-pad"
+            />
+            <TextInput
               label="Email"
               value={email}
               onChangeText={setEmail}
@@ -67,11 +65,11 @@ const Register = () => {
               autoCapitalize="none"
             />
             <TextInput
-              label="Password"
-              value={password}
-              onChangeText={setPassword}
+              label="Age"
+              value={age}
+              onChangeText={setAge}
               style={styles.input}
-              secureTextEntry
+              keyboardType="numeric"
             />
             <Button mode="contained" onPress={handleRegister} style={styles.button}>
               Register
@@ -110,4 +108,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register;
+export default Register;*/
+

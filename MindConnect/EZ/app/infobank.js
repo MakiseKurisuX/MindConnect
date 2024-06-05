@@ -21,9 +21,6 @@ export default function Page() {
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
-          headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-          ),
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
           ),

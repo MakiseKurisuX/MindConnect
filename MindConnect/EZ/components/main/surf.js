@@ -1,16 +1,37 @@
 import * as React from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Alert } from 'react-native';
 import { Surface, Text, Button } from 'react-native-paper';
 import { StyleSheet, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../firebaseConfig';
+import { auth, db } from '../../firebaseConfig'; // Updated to use 'db'
+import { doc, getDoc } from 'firebase/firestore';
 
 const Surf = () => {
     const navigation = useNavigation();
     const { user } = useContext(AuthContext);
+    const [firstName, setFirstName] = useState('');
+
+    useEffect(() => {
+        if (user) {
+            const fetchUserData = async () => {
+                try {
+                    const userDoc = await getDoc(doc(db, 'Users', user.uid)); // Updated to use 'db'
+                    if (userDoc.exists()) {
+                        setFirstName(userDoc.data().firstName);
+                    } else {
+                        console.log("No such document!");
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data: ", error);
+                }
+            };
+
+            fetchUserData();
+        }
+    }, [user]);
 
     const handleLogout = () => {
         signOut(auth)
@@ -26,62 +47,57 @@ const Surf = () => {
     return (
         <View style={styles.container}>
             <ImageBackground
-            source={require('../../assets/images/Surf.png')}
-            style={styles.bigSurface}
-            imageStyle={{ borderRadius: 60 }}
+                source={require('../../assets/images/Surf.png')}
+                style={styles.bigSurface}
+                imageStyle={{ borderRadius: 60 }}
             >
-            <Surface style={styles.bigSurface} elevation={4}>
-                <View style={styles.row}>
-                    {user ? (
-                        <View style={styles.row}>
-                            <Text style={styles.welcomeText}>Hello, {user.email}</Text>
-                            <Button
-                                    mode="contained"
-                                    onPress={handleLogout}
-                                    style={styles.logoutButton}
-                                >
-                                Logout
-                            </Button>
-                        </View>
-                    ) : (
-                        <>
-                            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                                <Surface style={styles.surface} elevation={4}>
-                                    <View style={styles.row}>
-                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                                        <Text>Login</Text>
-                                    </View>
-                                </Surface>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                                <Surface style={styles.surface} elevation={4}>
-                                    <View style={styles.row}>
-                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                                        <Text>Register as Counsellor</Text>
-                                    </View>
-                                </Surface>
-                            </TouchableOpacity>
-                        </>
-                    )}
-                </View>
-                <View style={styles.row}>
-                    <Surface style={styles.surface} elevation={4}>
-                        <View style={styles.row}>
-                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                            <Text>Surface 3</Text>
-                        </View>
-                    </Surface>
-                    <Surface style={styles.surface} elevation={4}>
-                        <View style={styles.row}>
-                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                            <Text>Surface 4</Text>
-                        </View>
-                    </Surface>
-                </View>
-            </Surface>
-        </ImageBackground>
+                <Surface style={styles.bigSurface} elevation={4}>
+                    <View style={styles.row}>
+                        {user ? (
+                            <View style={styles.row}>
+                                <Text style={styles.welcomeText}>Hello, {firstName}</Text>
+                            </View>
+                        ) : (
+                            <>
+                                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                                    <Surface style={styles.surface} elevation={4}>
+                                        <View style={styles.row}>
+                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Text>Login</Text>
+                                        </View>
+                                    </Surface>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                                    <Surface style={styles.surface} elevation={4}>
+                                        <View style={styles.row}>
+                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Text>Register as Counsellor</Text>
+                                        </View>
+                                    </Surface>
+                                </TouchableOpacity>
+                            </>
+                        )}
+                    </View>
+                    <View style={styles.row}>
+                        <Surface style={styles.surface} elevation={4}>
+                            <View style={styles.row}>
+                                <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                <Text>Sign Up as a Peer</Text>
+                            </View>
+                        </Surface>
+                        <TouchableOpacity onPress={handleLogout}>
+                            <Surface style={styles.surface} elevation={4}>
+                                <View style={styles.row}>
+                                    <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                    <Text>Logout</Text>
+                                </View>
+                            </Surface>
+                        </TouchableOpacity>
+                    </View>
+                </Surface>
+            </ImageBackground>
         </View>
-    )
+    );
 };
 
 export default Surf;
