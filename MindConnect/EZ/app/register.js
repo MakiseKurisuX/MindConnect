@@ -32,7 +32,7 @@ const Register = () => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../images/AppIcon.png')} 
+        source={require('../assets/images/AppIcon.png')} 
         style={styles.logo}
       />
       <Card style={styles.card}>
