@@ -6,13 +6,14 @@ import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig'; 
 import emailjs from 'emailjs-com';
 
-const SignUpCounseller = () => {
+const SignUpCounsellor = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [age, setAge] = useState('');
-  const [whyPeer, setWhyPeer] = useState('');
+  const [whyCounsellor, setWhyCounsellor] = useState('');
+  const [linkedIn, setLinkedIn] = useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -42,10 +43,11 @@ const SignUpCounseller = () => {
       phoneNumber,
       email,
       age,
-      whyPeer
+      whyCounsellor,
+      linkedIn,
     };
 
-    emailjs.send('service_dm5skog', 'template_32s3v09', templateParams, 'pTYwjX4ZDqcpHSaqK')
+    emailjs.send('service_dm5skog', 'template_8m7o0mg', templateParams, 'pTYwjX4ZDqcpHSaqK')
       .then((response) => {
         Alert.alert("Success", "Registration has been sent! Please wait up to 3 working days and check your email to see if you have been accepted or not!");
       })
@@ -64,8 +66,8 @@ const SignUpCounseller = () => {
         />
         <Card style={styles.card}>
           <Card.Content>
-            <Title>Register to be a Peer</Title>
-            <Paragraph>Thank you for your interest in registering to be a peer! Our peers need to be vetted, so please enter your age, phone number, and reasons for wanting to be a peer.</Paragraph>
+            <Title>Register to be a Counsellor</Title>
+            <Paragraph>Thank you for your interest in registering to be a counsellor! Our counsellors need to be vetted, so please enter your age, phone number, LinkedIn profile, and reasons for wanting to be a peer.</Paragraph>
             <TextInput
               label="Age"
               value={age}
@@ -81,9 +83,15 @@ const SignUpCounseller = () => {
               keyboardType="phone-pad"
             />
             <TextInput
-              label="Why do you want to be a peer?"
-              value={whyPeer}
-              onChangeText={setWhyPeer}
+              label="LinkedIn Profile"
+              value={linkedIn}
+              onChangeText={setLinkedIn}
+              style={styles.input}
+            />
+            <TextInput
+              label="Why do you want to be a counsellor?"
+              value={whyCounsellor}
+              onChangeText={setWhyCounsellor}
               style={styles.textArea}
               multiline
               numberOfLines={6}
@@ -130,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpCounseller;
+export default SignUpCounsellor;
