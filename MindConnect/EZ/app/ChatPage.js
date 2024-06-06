@@ -6,22 +6,42 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
+import { collection, addDoc, orderBy, query, onSnapshot } from 'firebase/firestore';
+import { auth, db } from '../firebaseConfig.js';
+
 
 const ChatPage = () => {
     const route = useRoute();
     const { chatId, chatName } = route.params;
 
     const [messages, setMessages] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
-        // Load initial messages or chat history if available
-        // Example: fetchMessages(chatId).then(setMessages);
-    }, [chatId]);
+        const collectionRef = collection(db, 'Chats');
+        const q = query(collectionRef, orderBy('createdAt', 'desc'));
 
-    const handleSend = useCallback((newMessages = []) => {
-        setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages));
-        // You can also send messages to your backend or update the chat history
-        // Example: sendMessage(newMessages);
+        const unsubscribe = onSnapshot(q, snapshot => {
+            setMessages(snapshot.docs.map(doc => ({
+                _id: doc.id,
+                createdAt: doc.data().createdAt.toDate(),
+                text: doc.data().text,
+                user: doc.data().user
+            })))
+        });
+        return unsubscribe;
+    }, []);
+
+    const handleSend = useCallback((messages = []) => {
+        setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
+
+        const{ _id, createdAt, text, user } = messages[0];
+        addDoc(collection(db, 'Chats'), {
+            _id,
+            createdAt,
+            text,
+            user
+            });
     }, []);
 
     return (
@@ -39,8 +59,7 @@ const ChatPage = () => {
         messages={messages}
         onSend={(messages) => handleSend(messages)}
         user={{
-            _id: 1,
-            name: 'Chat 1', // You can replace this with dynamic user data
+            _id: auth?.currentUser?.email,
         }}
         />
         </SafeAreaView>

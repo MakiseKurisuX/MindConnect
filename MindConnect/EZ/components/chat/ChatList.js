@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { fetchChats } from '../../app/ChatData';
+//https://i.seadn.io/gae/gctNTZKmTRG5z7A56d1GOfh4pxaM_b-XtVrmFN4FE6269fZoIOhc5dtr4YVHaOGRiXkRBVTta91iuz344f6YpjCTda7sfOWC5qlp?auto=format&dpr=1&w=3840
 
 const ChatList = () => {
     const navigation = useNavigation();
-//https://i.seadn.io/gae/gctNTZKmTRG5z7A56d1GOfh4pxaM_b-XtVrmFN4FE6269fZoIOhc5dtr4YVHaOGRiXkRBVTta91iuz344f6YpjCTda7sfOWC5qlp?auto=format&dpr=1&w=3840
-    const chats = [
-        { id: '1', name: 'Chat 1' },
-        { id: '2', name: 'Chat 2' },
-        { id: '3', name: 'Chat 3' },
-        { id: '4', name: 'Chat 4' },
-        { id: '5', name: 'Chat 5' },
-        { id: '6', name: 'Chat 6' },
-        { id: '7', name: 'Chat 7' },
-        { id: '8', name: 'Chat 8' },
-        { id: '9', name: 'Chat 9' },
-    ];
+    const [chats, setChats] = useState([]);
+
+    useEffect(() => {
+        const loadChats = async () => {
+            const chatData = await fetchChats();
+            setChats(chatData);
+        };
+
+        loadChats();
+    }, []);
+
 
     const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('ChatPage', { chatId: item.id, chatName: item.name })}>
