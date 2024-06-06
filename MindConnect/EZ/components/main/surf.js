@@ -13,6 +13,7 @@ const Surf = () => {
     const navigation = useNavigation();
     const { user } = useContext(AuthContext);
     const [firstName, setFirstName] = useState('');
+    const [role, setRole] = useState('');
 
     useEffect(() => {
         if (user) {
@@ -20,7 +21,9 @@ const Surf = () => {
                 try {
                     const userDoc = await getDoc(doc(db, 'Users', user.uid)); // Updated to use 'db'
                     if (userDoc.exists()) {
-                        setFirstName(userDoc.data().firstName);
+                        const data = userDoc.data();
+                        setFirstName(data.firstName);
+                        setRole(data.role);
                     } else {
                         console.log("No such document!");
                     }
@@ -78,22 +81,68 @@ const Surf = () => {
                             </>
                         )}
                     </View>
-                    <View style={styles.row}>
-                        <Surface style={styles.surface} elevation={4}>
+                    {role === 'peer' ? (
+                        <View style={styles.row}>
+                            <TouchableOpacity onPress={() => navigation.navigate('SignUpCounsellor')}>
+                                <Surface style={styles.surface} elevation={4}>
+                                    <View style={styles.row}>
+                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                        <Text>Sign Up as Counsellor</Text>
+                                    </View>
+                                </Surface>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={handleLogout}>
+                                <Surface style={styles.surface} elevation={4}>
+                                    <View style={styles.row}>
+                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                        <Text>Logout</Text>
+                                    </View>
+                                </Surface>
+                            </TouchableOpacity>
+                        </View>
+                    ) : role === 'counsellor' ? (
+                        <View style={styles.row}>
+                            <TouchableOpacity onPress={handleLogout}>
+                                <Surface style={styles.surface} elevation={4}>
+                                    <View style={styles.row}>
+                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                        <Text>Logout</Text>
+                                    </View>
+                                </Surface>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <>
                             <View style={styles.row}>
-                                <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                                <Text>Sign Up as a Peer</Text>
+                                <TouchableOpacity onPress={() => navigation.navigate('SignUpPeer')}>
+                                    <Surface style={styles.surface} elevation={4}>
+                                        <View style={styles.row}>
+                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Text>Sign Up as a Peer</Text>
+                                        </View>
+                                    </Surface>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate('SignUpCounsellor')}>
+                                    <Surface style={styles.surface} elevation={4}>
+                                        <View style={styles.row}>
+                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Text>Sign Up as Counsellor</Text>
+                                        </View>
+                                    </Surface>
+                                </TouchableOpacity>
                             </View>
-                        </Surface>
-                        <TouchableOpacity onPress={handleLogout}>
-                            <Surface style={styles.surface} elevation={4}>
-                                <View style={styles.row}>
-                                    <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
-                                    <Text>Logout</Text>
-                                </View>
-                            </Surface>
-                        </TouchableOpacity>
-                    </View>
+                            <View style={styles.logoutRow}>
+                                <TouchableOpacity onPress={handleLogout} style={{ width: '100%', alignItems: 'center' }}>
+                                    <Surface style={[styles.surface, styles.logoutSurface]} elevation={4}>
+                                        <View style={styles.row}>
+                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Text>Logout</Text>
+                                        </View>
+                                    </Surface>
+                                </TouchableOpacity>
+                            </View>
+                        </>
+                    )}
                 </Surface>
             </ImageBackground>
         </View>
@@ -115,8 +164,14 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
-        marginBottom: 5,
+        marginBottom: 0, // Reduce space between buttons
         padding: 12,
+    },
+    logoutRow: {
+        padding: 12,
+        width: '100%',
+        alignItems: 'center',
+        marginTop: 10, // Adjust space between the button rows
     },
     surface: {
         padding: 8,
@@ -127,6 +182,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
         borderRadius: 20,
     },
+    logoutSurface: {
+        width: '90%',
+        alignSelf: 'center',
+    },
     welcomeText: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -135,6 +194,6 @@ const styles = StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        marginRight: 8, // Add margin to separate the image and text
+        marginRight: 8, 
     },
 });

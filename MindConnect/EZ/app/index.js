@@ -126,6 +126,8 @@ import Register from './register';
 import Main from './main';
 import EntryDetail from './EntryDetail';
 import ChatPage from './ChatPage';
+import SignUpPeer from './SignUpPeer';
+import SignUpCounseller from './SignUpCounseller';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -185,9 +187,17 @@ function AppNavigator() {
               options={{ title: 'Entry Detail' }}
             />
             <Stack.Screen
-            name='ChatPage'
-            component={ChatPage}
-            options={{ title: 'Chat' }} />
+              name='ChatPage'
+              component={ChatPage}
+              options={{ title: 'Chat' }} />
+            <Stack.Screen
+              name='SignUpPeer'
+              component={SignUpPeer}
+              options={{ title: 'Sign Up As a Peer' }} />
+            <Stack.Screen
+              name='SignUpCounseller'
+              component={SignUpCounseller}
+              options={{ title: 'Sign Up As a Peer' }} />
           </>
         ) : (
           <>
