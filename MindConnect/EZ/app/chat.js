@@ -5,7 +5,7 @@ import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
 
-import ChatList from '../components/chat/chatlist';  // Chat list component
+import ChatList from './ChatList';  // Chat list component
 import NewChat from '../components/chat/newchat';  // New Chat component
 
 

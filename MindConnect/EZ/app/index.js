@@ -125,8 +125,7 @@ import Login from './login';
 import Register from './register';
 import Main from './main';
 import EntryDetail from './EntryDetail';
-import ChatList from '../components/chat/chatlist';
-import ChatPage from '../components/chat/chatpage';
+import ChatPage from './ChatPage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -185,6 +184,10 @@ function AppNavigator() {
               component={EntryDetail}
               options={{ title: 'Entry Detail' }}
             />
+            <Stack.Screen
+            name='ChatPage'
+            component={ChatPage}
+            options={{ title: 'Chat' }} />
           </>
         ) : (
           <>
@@ -198,8 +201,6 @@ function AppNavigator() {
               component={Register}
               options={{ title: 'Register' }}
             />
-            <Stack.Screen name='ChatList' component={ChatList} options={{ title: 'Chats' }} />
-            <Stack.Screen name='ChatPage' component={ChatPage} options={{ title: 'Chat' }} />
           </>
         )}
       </Stack.Navigator>

@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Text, View, SafeAreaView } from 'react-native';
+import { Stack } from 'expo-router';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import { COLORS, images } from '../../constants';
-import { ScreenHeaderBtn } from '../../components';
-import { styles, zackStyles } from '../../styles';
+import { COLORS, images } from '../constants';
+import { ScreenHeaderBtn } from '../components';
+import { styles, zackStyles } from '../styles';
 
 const ChatPage = () => {
     const route = useRoute();
