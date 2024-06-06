@@ -2,9 +2,10 @@ import * as React from 'react';
 import { View, useWindowDimensions, StyleSheet } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import ChatList from './ChatList'; // Import the ChatList component
+import Form from './form'; // Import the Form component
 
 const FirstRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
+  <Form />
 );
 
 const SecondRoute = () => (
@@ -41,6 +42,7 @@ export default function TabViewExample() {
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
       renderTabBar={renderTabBar}
+      swipeEnabled={false}
     />
   );
 }
