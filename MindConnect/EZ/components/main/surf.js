@@ -83,10 +83,10 @@ const Surf = () => {
                     </View>
                     {role === 'peer' ? (
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => navigation.navigate('SignUpCounsellor')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('SignUpCounseller')}>
                                 <Surface style={styles.surface} elevation={4}>
                                     <View style={styles.row}>
-                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                        <Image source={require('../../assets/images/Counsellor.png')} style={styles.image} />
                                         <Text>Sign Up as Counsellor</Text>
                                     </View>
                                 </Surface>
@@ -94,7 +94,7 @@ const Surf = () => {
                             <TouchableOpacity onPress={handleLogout}>
                                 <Surface style={styles.surface} elevation={4}>
                                     <View style={styles.row}>
-                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                        <Image source={require('../../assets/images/logout.jpg')} style={styles.image} />
                                         <Text>Logout</Text>
                                     </View>
                                 </Surface>
@@ -105,7 +105,7 @@ const Surf = () => {
                             <TouchableOpacity onPress={handleLogout}>
                                 <Surface style={styles.surface} elevation={4}>
                                     <View style={styles.row}>
-                                        <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                        <Image source={require('../../assets/images/logout.jpg')} style={styles.image} />
                                         <Text>Logout</Text>
                                     </View>
                                 </Surface>
@@ -117,15 +117,15 @@ const Surf = () => {
                                 <TouchableOpacity onPress={() => navigation.navigate('SignUpPeer')}>
                                     <Surface style={styles.surface} elevation={4}>
                                         <View style={styles.row}>
-                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Image source={require('../../assets/images/PeerSupporter.png')} style={styles.image} />
                                             <Text>Sign Up as a Peer</Text>
                                         </View>
                                     </Surface>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => navigation.navigate('SignUpCounsellor')}>
+                                <TouchableOpacity onPress={() => navigation.navigate('SignUpCounseller')}>
                                     <Surface style={styles.surface} elevation={4}>
                                         <View style={styles.row}>
-                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Image source={require('../../assets/images/Counsellor.png')} style={styles.image} />
                                             <Text>Sign Up as Counsellor</Text>
                                         </View>
                                     </Surface>
@@ -135,7 +135,7 @@ const Surf = () => {
                                 <TouchableOpacity onPress={handleLogout} style={{ width: '100%', alignItems: 'center' }}>
                                     <Surface style={[styles.surface, styles.logoutSurface]} elevation={4}>
                                         <View style={styles.row}>
-                                            <Image source={require('../../assets/images/AppIcon.png')} style={styles.image} />
+                                            <Image source={require('../../assets/images/logout.jpg')} style={styles.image} />
                                             <Text>Logout</Text>
                                         </View>
                                     </Surface>
@@ -164,14 +164,14 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
-        marginBottom: 0, // Reduce space between buttons
+        marginBottom: 0, 
         padding: 12,
     },
     logoutRow: {
         padding: 12,
         width: '100%',
         alignItems: 'center',
-        marginTop: 10, // Adjust space between the button rows
+        marginTop: -10, 
     },
     surface: {
         padding: 8,

@@ -7,9 +7,6 @@ import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
 
-
-//const prisma = new PrismaClient({});
-
 export default function Page() {
   const router = useRouter();
 
@@ -34,10 +31,6 @@ export default function Page() {
             THIS IS THE CONSULT PAGE
           </Text>
         </View>
-        <Image 
-          source={{ uri: "https://img.freepik.com/premium-photo/beautiful-nature-images-nature-wallpaper-landscapes-nature-pictures_859052-430.jpg" }}
-          style={{ height: 300, width: 400 }}
-        />
       </ScrollView>
     </SafeAreaView>
   );
