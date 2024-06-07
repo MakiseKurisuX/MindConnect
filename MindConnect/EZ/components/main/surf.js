@@ -135,7 +135,7 @@ const Surf = () => {
                                 <TouchableOpacity onPress={handleLogout} style={{ width: '100%', alignItems: 'center' }}>
                                     <Surface style={[styles.surface, styles.logoutSurface]} elevation={4}>
                                         <View style={styles.row}>
-                                            <Image source={require('../../assets/images/logout.jpg')} style={styles.image} />
+                                            <Image source={require('../../assets/images/logout.png')} style={styles.image} />
                                             <Text>Logout</Text>
                                         </View>
                                     </Surface>
