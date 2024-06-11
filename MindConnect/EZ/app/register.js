@@ -10,8 +10,14 @@ const Register = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Error", "Passwords do not match. Please try again.");
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -44,8 +50,8 @@ const Register = () => {
         />
         <Card style={styles.card}>
           <Card.Content>
-            <Title>Register to be a Counsellor</Title>
-            <Paragraph>Please enter your details to register to be a counsellor.</Paragraph>
+            <Title>Register</Title>
+            <Paragraph>Please enter your details to register for MindConnect.</Paragraph>
             <TextInput
               label="First Name"
               value={firstName}
@@ -70,6 +76,13 @@ const Register = () => {
               label="Password"
               value={password}
               onChangeText={setPassword}
+              style={styles.input}
+              secureTextEntry
+            />
+            <TextInput
+              label="Confirm Password"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
               style={styles.input}
               secureTextEntry
             />
@@ -98,15 +111,15 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 16,
-    backgroundColor: '#E0F8E0', // Light lime green background
+    backgroundColor: '#E0F8E0', 
   },
   input: {
     marginBottom: 16,
-    backgroundColor: '#e3ffed', // Light green background for input
+    backgroundColor: '#e3ffed', 
   },
   button: {
     marginTop: 16,
-    backgroundColor: '#006b26', // Dark green button
+    backgroundColor: '#006b26', 
   },
 });
 

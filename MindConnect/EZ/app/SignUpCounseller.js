@@ -67,7 +67,7 @@ const SignUpCounsellor = () => {
         <Card style={styles.card}>
           <Card.Content>
             <Title>Register to be a Counsellor</Title>
-            <Paragraph>Thank you for your interest in registering to be a counsellor! Our counsellors need to be vetted, so please enter your age, phone number, LinkedIn profile, and reasons for wanting to be a peer.</Paragraph>
+            <Paragraph>Thank you for your interest in registering to be a counsellor! The role of our counsellors is to help run the 'Consult' feature, and to help vet our quotes system! Our counsellors need to be vetted, so please enter your age, phone number, LinkedIn profile, and reasons for wanting to be a peer.</Paragraph>
             <TextInput
               label="Age"
               value={age}

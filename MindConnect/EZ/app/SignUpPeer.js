@@ -65,7 +65,7 @@ const SignUpPeer = () => {
         <Card style={styles.card}>
           <Card.Content>
             <Title>Register to be a Peer</Title>
-            <Paragraph>Thank you for your interest in registering to be a peer! Our peers need to be vetted, so please enter your age, phone number, and reasons for wanting to be a peer.</Paragraph>
+            <Paragraph>Thank you for your interest in registering to be a peer! The role of our peers is to help run the 'Chat with a Peer' feature, and talk to people seeking help! Our peers need to be vetted, so please enter your age, phone number, and reasons for wanting to be a peer.</Paragraph>
             <TextInput
               label="Age"
               value={age}
