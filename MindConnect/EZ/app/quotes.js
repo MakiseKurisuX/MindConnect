@@ -31,13 +31,9 @@ export default function Page() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
           <Text style={styles.paginationText}>
-            THIS IS THE STORY PAGE
+            THIS IS THE QUOTES PAGE
           </Text>
         </View>
-        <Image 
-          source={{ uri: "https://img.freepik.com/premium-photo/beautiful-nature-images-nature-wallpaper-landscapes-nature-pictures_859052-430.jpg" }}
-          style={{ height: 300, width: 400 }}
-        />
       </ScrollView>
     </SafeAreaView>
   );

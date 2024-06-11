@@ -120,7 +120,7 @@ import { AuthContext, AuthProvider } from '../contexts/AuthContext';
 import InfobankScreen from './infobank';
 import Chat from './chat';
 import Consult from './consult';
-import StoryScreen from './story';
+import Quotes from './quotes';
 import Login from './login';
 import Register from './register';
 import Main from './main';
@@ -147,7 +147,7 @@ function AppTabs() {
             iconSource = require('../assets/images/Chat.png');
           } else if (route.name === 'Consult') {
             iconSource = require('../assets/images/Video_Consult.png');
-          } else if (route.name === 'Story') {
+          } else if (route.name === 'Quotes') {
             iconSource = require('../assets/images/Story.png');
           }
 
@@ -163,7 +163,7 @@ function AppTabs() {
       <Tab.Screen name="InfoBank" component={InfobankScreen} />
       <Tab.Screen name="Chat" component={Chat} />
       <Tab.Screen name="Consult" component={Consult} />
-      <Tab.Screen name="Story" component={StoryScreen} />
+      <Tab.Screen name="Quotes" component={Quotes} />
     </Tab.Navigator>
   );
 }
