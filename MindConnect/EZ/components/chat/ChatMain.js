@@ -1,47 +1,88 @@
-import * as React from 'react';
-import { View, useWindowDimensions, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, useWindowDimensions, StyleSheet, ActivityIndicator } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import ChatList from './ChatList'; // Import the ChatList component
-import Form from './form'; // Import the Form component
+import { auth, db } from '../../firebaseConfig'; 
+import { doc, getDoc } from 'firebase/firestore';
+import ChatList from './ChatList'; 
+import Form from './form'; 
+import PeerRequests from './peerRequests'; 
 
-const FirstRoute = () => (
-  <Form />
-);
+const FirstRoute = ({ role }) => {
+  if (role === 'user') {
+    return <Form />;
+  } else {
+    return <PeerRequests />;
+  }
+};
 
 const SecondRoute = () => (
   <ChatList /> // Use the ChatList component in the second tab
 );
 
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-});
+const renderScene = (role) =>
+  SceneMap({
+    first: () => <FirstRoute role={role} />,
+    second: SecondRoute,
+  });
 
 export default function TabViewExample() {
   const layout = useWindowDimensions();
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
+  const [index, setIndex] = useState(0);
+  const [routes, setRoutes] = useState([
     { key: 'first', title: 'Find Peer' },
     { key: 'second', title: 'Chats' },
   ]);
+  const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const renderTabBar = props => (
-    <TabBar
-      {...props}
-      indicatorStyle={styles.indicator}
-      style={styles.tabBar}
-      labelStyle={styles.label}
-    />
-  );
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const userDoc = await getDoc(doc(db, 'Users', user.uid));
+          if (userDoc.exists()) {
+            const role = userDoc.data().role;
+            setRole(role);
+
+            setRoutes([
+              { key: 'first', title: role === 'user' ? 'Find Peer' : 'Peer Requests' },
+              { key: 'second', title: 'Chats' },
+            ]);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user role: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserRole();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#32CD32" />
+      </View>
+    );
+  }
 
   return (
     <TabView
       navigationState={{ index, routes }}
-      renderScene={renderScene}
+      renderScene={renderScene(role)}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
-      renderTabBar={renderTabBar}
+      renderTabBar={(props) => (
+        <TabBar
+          {...props}
+          indicatorStyle={styles.indicator}
+          style={styles.tabBar}
+          labelStyle={styles.label}
+        />
+      )}
       swipeEnabled={false}
     />
   );
@@ -49,12 +90,17 @@ export default function TabViewExample() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: '#32CD32', // Dark lime green background
+    backgroundColor: '#32CD32', 
   },
   indicator: {
-    backgroundColor: 'white', // Color of the indicator
+    backgroundColor: 'white', 
   },
   label: {
-    color: 'white', // Color of the label text
+    color: 'white', 
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

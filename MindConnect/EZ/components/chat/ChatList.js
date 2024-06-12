@@ -1,40 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { fetchChats } from '../../app/ChatData';
-//https://i.seadn.io/gae/gctNTZKmTRG5z7A56d1GOfh4pxaM_b-XtVrmFN4FE6269fZoIOhc5dtr4YVHaOGRiXkRBVTta91iuz344f6YpjCTda7sfOWC5qlp?auto=format&dpr=1&w=3840
+import { fetchChats } from './ChatData';
 
 const ChatList = () => {
-    const navigation = useNavigation();
-    const [chats, setChats] = useState([]);
+  const navigation = useNavigation();
+  const [chats, setChats] = useState([]);
 
-    useEffect(() => {
-        const loadChats = async () => {
-            const chatData = await fetchChats();
-            setChats(chatData);
-        };
+  useEffect(() => {
+    const loadChats = async () => {
+      const chatData = await fetchChats();
+      setChats(chatData);
+    };
 
-        loadChats();
-    }, []);
+    loadChats();
+  }, []);
 
-
-    const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('ChatPage', { chatId: item.id, chatName: item.name })}>
-    <View style={{ padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-    <Text style={{ fontSize: 18 }}>{item.name}</Text>
-    </View>
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => navigation.navigate('ChatPage', { chatId: item.id, chatName: item.topic })}>
+      <View style={styles.chatItem}>
+        <Text style={styles.chatName}>{item.topic}</Text>
+        <Text style={styles.chatDescription}>{item.description}</Text>
+      </View>
     </TouchableOpacity>
-    );
+  );
 
-    return (
-
-            <FlatList
-            data={chats}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            />
-
-        );
+  return (
+    <FlatList
+      data={chats}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={styles.container}
+    />
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+  chatItem: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  chatName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  chatDescription: {
+    fontSize: 14,
+    color: 'gray',
+    marginTop: 4,
+  },
+});
 
 export default ChatList;
