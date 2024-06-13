@@ -9,6 +9,16 @@
       "channel": "development"
     },
     "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
       "distribution": "internal",
       "channel": "preview"
     },
