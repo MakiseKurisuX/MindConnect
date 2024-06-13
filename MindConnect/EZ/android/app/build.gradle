@@ -83,7 +83,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.mindconnect"
+    namespace "com.zacklow28.MindConnect"
     defaultConfig {
         applicationId 'com.zacklow28.MindConnect'
         minSdkVersion rootProject.ext.minSdkVersion

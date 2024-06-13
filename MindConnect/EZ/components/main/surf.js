@@ -94,7 +94,7 @@ const Surf = () => {
                             <TouchableOpacity onPress={handleLogout}>
                                 <Surface style={styles.surface} elevation={4}>
                                     <View style={styles.row}>
-                                        <Image source={require('../../assets/images/logout.jpg')} style={styles.image} />
+                                        <Image source={require('../../assets/images/logout.png')} style={styles.image} />
                                         <Text>Logout</Text>
                                     </View>
                                 </Surface>
@@ -105,7 +105,7 @@ const Surf = () => {
                             <TouchableOpacity onPress={handleLogout}>
                                 <Surface style={styles.surface} elevation={4}>
                                     <View style={styles.row}>
-                                        <Image source={require('../../assets/images/logout.jpg')} style={styles.image} />
+                                        <Image source={require('../../assets/images/logout.png')} style={styles.image} />
                                         <Text>Logout</Text>
                                     </View>
                                 </Surface>
