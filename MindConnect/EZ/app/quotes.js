@@ -1,14 +1,10 @@
-import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
-import { Stack, useRouter, Link } from 'expo-router';
-import { useState } from 'react';
-import * as React from 'react';
-
-import { COLORS, icons, images, SIZES } from '../constants';
+import React from 'react';
+import { Text, View, ScrollView, SafeAreaView } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
-
-
-//const prisma = new PrismaClient({});
+import QuotesPage from '../components/quotes/quotesPage'; 
 
 export default function Page() {
   const router = useRouter();
@@ -30,9 +26,8 @@ export default function Page() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
-          <Text style={styles.paginationText}>
-            THIS IS THE QUOTES PAGE
-          </Text>
+          <Text>View Quotes</Text>
+          <QuotesPage />
         </View>
       </ScrollView>
     </SafeAreaView>
