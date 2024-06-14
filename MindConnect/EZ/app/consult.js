@@ -5,12 +5,30 @@ import * as React from 'react';
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
-import { Video } from './video.js';
+import 'expo-dev-client';
+import AgoraUIKit, {PropsInterface} from 'agora-rn-uikit';
 
 //const prisma = new PrismaClient({});
 
 export default function Page() {
   const router = useRouter();
+
+  const Video = () => {
+    const [videoCall, setVideoCall] = useState(true);
+    const props: AgoraUIKitProps = {
+      connectionData: {
+        appId: 'e7785caf48a64492b8199d2f45903f87',
+        channel: 'test',
+      },
+      rtcCallbacks: {
+        EndCall: () => setVideoCall(false),
+      },
+    };
+
+    return videoCall ? (
+    <AgoraUIKit connectionData={props.connectionData} rtcCallbacks={props.rtcCallbacks} />
+    ) : null;
+  };
 
   return (
     <SafeAreaView style={zackStyles.mainBg}>
@@ -33,8 +51,8 @@ export default function Page() {
             THIS IS THE CONSULT PAGE
           </Text>
         </View>
-        <Video/>
       </ScrollView>
+      <Video/>
     </SafeAreaView>
   );
 }
