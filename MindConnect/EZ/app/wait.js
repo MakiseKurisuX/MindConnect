@@ -1,15 +1,10 @@
-import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
-import { Stack, useRouter, Link } from 'expo-router';
-import { useState } from 'react';
-import * as React from 'react';
-import { COLORS, icons, images, SIZES } from '../constants';
+import React from 'react';
+import { Text, View, ScrollView, SafeAreaView } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
-import 'expo-dev-client';
-import AgoraUIKit, {PropsInterface} from 'agora-rn-uikit';
-import ConsultMain from '../components/consult/consultMain';
-
-//const prisma = new PrismaClient({});
+import WaitPage from '../components/consult/wait';
 
 export default function Page() {
   const router = useRouter();
@@ -26,15 +21,15 @@ export default function Page() {
           headerTitle: () => (
             <Text style={{ color: COLORS.oliveGreen, fontSize: 20 }}>MINDCONNECT</Text>
           ),
+          headerLeft: () => null,
         }}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
-          <ConsultMain />
+          <WaitPage />
         </View>
       </ScrollView>
-      
     </SafeAreaView>
   );
 }
