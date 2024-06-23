@@ -17,6 +17,7 @@ const FirstRoute = ({ role }) => {
 
 const SecondRoute = () => (
   <ConsultHistory /> 
+)
 
 const renderScene = (role) =>
   SceneMap({
