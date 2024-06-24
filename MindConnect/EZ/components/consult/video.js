@@ -33,13 +33,12 @@ const VideoCall = () => {
   };
 
   return (
-    <View>
+    <View style={{flex:1}}>
       {videoCall && (
         <AgoraUIKit
           connectionData={rtcProps.connectionData}
           rtcCallbacks={rtcCallbacks}
           videoEncoderConfig={rtcProps.videoEncoderConfig}
-          style={styles.video}
         />
       )}
     </View>
