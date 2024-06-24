@@ -12,7 +12,7 @@ const VideoCall = () => {
   const rtcCallbacks = {
     EndCall: () => {
       setVideoCall(false);
-      navigation.goBack();
+      navigation.navigate('VideoCall');
     },
   };
 

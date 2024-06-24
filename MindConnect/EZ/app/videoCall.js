@@ -21,6 +21,7 @@ export default function Page() {
           headerTitle: () => (
             <Text style={{ color: COLORS.oliveGreen, fontSize: 20 }}>MINDCONNECT</Text>
           ),
+          headerLeft: () => null,
         }}
       />
       
