@@ -16,7 +16,7 @@ const FirstRoute = ({ role }) => {
 };
 
 const SecondRoute = () => (
-  <ChatList /> // Use the ChatList component in the second tab
+  <ChatList /> 
 );
 
 const renderScene = (role) =>
