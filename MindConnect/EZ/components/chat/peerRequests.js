@@ -3,21 +3,20 @@ import { View, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-nativ
 import { Surface, Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { auth, db } from '../../firebaseConfig'; 
-import { collection, query, where, getDocs, updateDoc, doc, getDoc, addDoc } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, updateDoc, doc, getDoc, addDoc } from 'firebase/firestore';
 
 const PeerRequests = () => {
   const [requests, setRequests] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
-    const loadRequests = async () => {
-      const q = query(collection(db, 'Chats'), where('accepted', '==', false));
-      const querySnapshot = await getDocs(q);
+    const q = query(collection(db, 'Chats'), where('accepted', '==', false));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const fetchedRequests = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setRequests(fetchedRequests);
-    };
+    });
 
-    loadRequests();
+    return () => unsubscribe();
   }, []);
 
   const handleAcceptRequest = async (item) => {
@@ -48,7 +47,6 @@ const PeerRequests = () => {
                   peerName,
                 });
 
-                // Add a system message to the chat indicating the peer has accepted the request
                 await addDoc(collection(db, 'Chats', item.id, 'messages'), {
                   _id: `system_${new Date().getTime()}`,
                   text: `${peerName} has accepted the chat request.`,

@@ -17,7 +17,6 @@ const ConsultRequests = () => {
       setRequests(fetchedRequests);
     });
 
-    // Cleanup the subscription on unmount
     return () => unsubscribe();
   }, []);
 
@@ -37,19 +36,28 @@ const ConsultRequests = () => {
               const user = auth.currentUser;
               const counselorDocRef = doc(db, 'Users', user.uid);
               const counselorDoc = await getDoc(counselorDocRef);
-
+  
               if (counselorDoc.exists()) {
                 const counselorData = counselorDoc.data();
                 const counselorName = `${counselorData.firstName} ${counselorData.lastName}`;
                 const consultationDocRef = doc(db, 'Consultations', item.id);
-
+  
+                const consultationDoc = await getDoc(consultationDocRef);
+                let userIds = [];
+                if (consultationDoc.exists()) {
+                  const consultationData = consultationDoc.data();
+                  userIds = Array.isArray(consultationData.userId) ? consultationData.userId : [consultationData.userId];
+                }
+  
+                userIds.push(user.uid);
+  
                 await updateDoc(consultationDocRef, {
                   accepted: true,
                   status: 'accepted',
-                  userId: Array.isArray(item.userId) ? [...item.userId, user.uid] : [user.uid],
+                  userId: userIds,
                   counselorName,
                 });
-
+  
                 navigation.navigate('VideoCall', { consultationId: item.id, channelId: item.channelId });
               } else {
                 throw new Error("Counselor document not found");
