@@ -44,7 +44,7 @@ const LoginPage = () => {
             style={styles.input}
             keyboardType="email-address"
             autoCapitalize="none"
-            theme={{ colors: { primary: '#32CD32' } }} // Lime green underline
+            theme={{ colors: { primary: '#32CD32' } }} 
           />
           <TextInput
             label="Password"
@@ -53,7 +53,7 @@ const LoginPage = () => {
             onChangeText={setPassword}
             style={styles.input}
             secureTextEntry
-            theme={{ colors: { primary: '#32CD32' } }} // Lime green underline
+            theme={{ colors: { primary: '#32CD32' } }} 
           />
           <Button mode="contained" onPress={handleLogin} style={styles.button}>
             Login
