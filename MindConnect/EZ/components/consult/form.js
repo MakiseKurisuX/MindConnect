@@ -35,7 +35,6 @@ const Form = () => {
       try {
         const user = auth.currentUser;
 
-        // Create a new document in the 'Consultations' collection
         const consultationDocRef = await addDoc(collection(db, 'Consultations'), {
           userId: user.uid,
           topic,
@@ -46,10 +45,8 @@ const Form = () => {
           status: 'waiting'
         });
 
-        // Use the auto-generated ID as the channelId
         const channelId = consultationDocRef.id;
 
-        // Update the document with the channelId
         await updateDoc(doc(db, 'Consultations', channelId), {
           channelId
         });
