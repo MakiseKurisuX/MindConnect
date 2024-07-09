@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import { Surface, Text } from 'react-native-paper';
 import { fetchEntries } from './infobankData';
 import { useNavigation } from '@react-navigation/native';
+import filter from "lodash.filter";
 
 const InfoBank = () => {
   const [entries, setEntries] = useState([]);
+  const [allEntries, setAllEntries] = useState([]);
+  const [search, setSearch] = useState("");
   const navigation = useNavigation();
 
   useEffect(() => {
     const loadEntries = async () => {
       const fetchedEntries = await fetchEntries();
       setEntries(fetchedEntries);
+      setAllEntries(fetchedEntries);
     };
-
     loadEntries();
   }, []);
 
@@ -27,13 +30,42 @@ const InfoBank = () => {
     </TouchableOpacity>
   );
 
+  const handleSearch = (query) => {
+    setSearch(query);
+    const formatted = query.toLowerCase();
+    const filtered = filter(allEntries, (user) => {
+      return contains(user, formatted); //check against the formatted version
+    });
+    setEntries(filtered); //change the displayed to only the filtered ones
+  }
+
+  const contains = ({title, author, description}, query) => {
+    if (title.toLowerCase().includes(query) ||
+    author.toLowerCase().includes(query) ||
+    description.toLowerCase().includes(query)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   return (
+    <View>
+    <View style={{borderWidth: 1, margin: 10, justifyContent: "space-between"}}>
+    <TextInput style={{marginLeft: 5}}
+    placeholder="Search"
+    clearButtonMode="always"
+    value={search}
+    onChangeText={(query) => handleSearch(query)}/>
+    </View>
     <FlatList
       data={entries}
       keyExtractor={(item) => item.id}
       renderItem={renderEntry}
       contentContainerStyle={styles.container}
     />
+    </View>
   );
 };
 
