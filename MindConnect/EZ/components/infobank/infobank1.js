@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, TextInput, TouchableWithoutFeedback } from 'react-native';
 import { Surface, Text } from 'react-native-paper';
 import { fetchEntries } from './infobankData';
 import { useNavigation } from '@react-navigation/native';
@@ -50,21 +50,28 @@ const InfoBank = () => {
     }
   }
 
+  const clearSearch = () => {
+    setSearch("");
+    setEntries(allEntries);
+  };
+
   return (
     <View>
-    <View style={{borderWidth: 1, margin: 10, justifyContent: "space-between"}}>
-    <TextInput style={{marginLeft: 5}}
-    placeholder="Search"
-    clearButtonMode="always"
-    value={search}
-    onChangeText={(query) => handleSearch(query)}/>
-    </View>
-    <FlatList
-      data={entries}
-      keyExtractor={(item) => item.id}
-      renderItem={renderEntry}
-      contentContainerStyle={styles.container}
-    />
+      <View style={styles.searchbar}>
+        <TextInput style={styles.search}
+        placeholder="Search"
+        value={search}
+        onChangeText={(query) => handleSearch(query)}/>
+        <TouchableOpacity style={styles.button} onPress={clearSearch}>
+          <Text style={{color:"white", paddingTop: 12}}>Clear</Text>
+        </TouchableOpacity>
+      </View>
+      <FlatList
+        data={entries}
+        keyExtractor={(item) => item.id}
+        renderItem={renderEntry}
+        contentContainerStyle={styles.container}
+      />
     </View>
   );
 };
@@ -88,6 +95,26 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
+  },
+  searchbar: {
+    height: 50,
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 10,
+    justifyContent: "space-between",
+    flexDirection:"row",
+  },
+  search: {
+    marginLeft: 5,
+    height: 50,
+    width:260,
+  },
+  button: {
+    paddingRight: 10,
+    paddingLeft: 10,
+    backgroundColor:"green",
+    borderBottomRightRadius: 4,
+    borderTopRightRadius: 4,
   },
 });
 
