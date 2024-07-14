@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { fetchChats } from './ChatData';
+import { auth, db } from '../../firebaseConfig';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 
 const ChatList = () => {
   const navigation = useNavigation();
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
-    const loadChats = async () => {
-      const chatData = await fetchChats();
-      setChats(chatData);
-    };
+    const user = auth.currentUser;
+    if (!user) return;
 
-    loadChats();
+    const chatsRef = collection(db, 'Chats');
+    const q = query(chatsRef, where('userId', 'array-contains', user.uid));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const chatData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setChats(chatData);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const renderItem = ({ item }) => (

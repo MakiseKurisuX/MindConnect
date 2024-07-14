@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { fetchConsults } from './consultData'; 
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { db, auth } from '../../firebaseConfig'; 
 
 const ConsultHistory = () => {
   const [consults, setConsults] = useState([]);
 
   useEffect(() => {
-    const loadConsults = async () => {
-      const consultData = await fetchConsults();
-      setConsults(consultData);
+    const fetchConsults = (callback) => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          throw new Error("No authenticated user found");
+        }
+
+        const consultsRef = collection(db, 'Consultations');
+        const q = query(consultsRef, where('userId', 'array-contains', user.uid));
+
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          const consultData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          callback(consultData);
+        });
+
+        return unsubscribe;
+      } catch (error) {
+        console.error("Error fetching consultations:", error);
+      }
     };
 
-    loadConsults();
+    const unsubscribe = fetchConsults(setConsults);
+
+    return () => unsubscribe();
   }, []);
 
   const renderItem = ({ item }) => (
