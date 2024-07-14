@@ -4,9 +4,8 @@ import { Stack, useRouter } from 'expo-router';
 import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
-import QuotesPage from '../components/quotes/quotesPage'; 
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
+import QuotesPage from '../components/quotes/quotesPage';
+import * as Notifications from 'expo-notifications'; // Import Notifications module
 
 export default function Page() {
   const router = useRouter();
@@ -22,8 +21,9 @@ export default function Page() {
   }, []);
 
   const requestPermissions = async () => {
-    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    return status === 'granted';
+    // Use Notifications module to request permissions
+    const settings = await Notifications.requestPermissionsAsync();
+    return settings.granted;
   };
 
   const scheduleDailyNotification = async () => {
