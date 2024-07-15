@@ -99,14 +99,14 @@ const enhancedStyles = {
     marginBottom: 20,
   },
   featureItem: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#666',
     marginBottom: 5,
   },
   additionalFeaturesText: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#666',
-    lineHeight: 22,
+    lineHeight: 25,
   },
   image: {
     height: 300,
