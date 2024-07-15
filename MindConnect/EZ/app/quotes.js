@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View, ScrollView, SafeAreaView, Alert } from 'react-native';
+import { Text, View, ScrollView, SafeAreaView, Alert, ImageBackground } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
@@ -41,7 +41,13 @@ export default function Page() {
   };
 
   return (
-    <SafeAreaView style={zackStyles.mainBg}>
+  <SafeAreaView style={zackStyles.mainBg}>
+  <ImageBackground
+  source={require('../assets/images/bg.png')}
+  style={{flex:1}}
+  >
+
+
       <Stack.Screen
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
@@ -57,10 +63,11 @@ export default function Page() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.scrollView}>
-          <Text>View Quotes</Text>
+          <Text style={{color:"white", fontSize:24, textAlign:"center", fontWeight:'bold'}}>QUOTES OF THE DAY</Text>
           <QuotesPage />
         </View>
       </ScrollView>
-    </SafeAreaView>
+</ImageBackground>
+</SafeAreaView>
   );
 }
