@@ -33,9 +33,21 @@ const ConsultHistory = () => {
     return () => unsubscribe();
   }, []);
 
+  const formatDuration = (start, end) => {
+    const startTime = new Date(start.seconds * 1000);
+    const endTime = new Date(end.seconds * 1000);
+    const duration = (endTime - startTime) / 1000; 
+
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+
+    return `${minutes}m ${seconds}s`;
+  };
+
   const renderItem = ({ item }) => (
     <View style={styles.consultItem}>
       <Text style={styles.consultName}>{item.topic}</Text>
+      <Text style={styles.consultDuration}>Consult Duration: {formatDuration(item.createdAt, item.endCall)}</Text>
       <Text style={styles.consultDescription}>{item.description}</Text>
     </View>
   );
@@ -62,6 +74,11 @@ const styles = StyleSheet.create({
   consultName: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  consultDuration: {
+    fontSize: 14,
+    color: 'gray',
+    marginTop: 4,
   },
   consultDescription: {
     fontSize: 14,

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { db } from '../../firebaseConfig';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot, deleteDoc, getDoc } from 'firebase/firestore';
 
 const WaitPage = () => {
   const route = useRoute();
@@ -13,18 +13,36 @@ const WaitPage = () => {
 
   useEffect(() => {
     const consultationDocRef = doc(db, 'Consultations', consultationId);
+    
+    const timer = setTimeout(async () => {
+      try {
+        const docSnap = await getDoc(consultationDocRef);
+        if (docSnap.exists() && docSnap.data().status === 'waiting') {
+          await deleteDoc(consultationDocRef);
+          Alert.alert("Request Timeout", "No counselor accepted your request within 15 minutes. Please try again.");
+          navigation.navigate('Consult'); 
+        }
+      } catch (error) {
+        console.error("Error deleting document: ", error);
+      }
+    }, 900000); 
+
     const unsubscribe = onSnapshot(consultationDocRef, (doc) => {
       if (doc.exists()) {
         const data = doc.data();
         setStatus(data.status);
         setChannelId(data.channelId);
         if (data.status === 'accepted') {
-          navigation.navigate('VideoCall', { channelId: data.channelId });
+          clearTimeout(timer); 
+          navigation.navigate('VideoCall', { consultationId: data.id, channelId: data.channelId });
         }
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      clearTimeout(timer); 
+      unsubscribe();
+    };
   }, [consultationId]);
 
   return (
@@ -46,6 +64,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     marginBottom: 16,
+    textAlign: 'center',
   },
 });
 

@@ -2,18 +2,32 @@ import React, { useState } from 'react';
 import AgoraUIKit from 'agora-rn-uikit';
 import { View, StyleSheet } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { db } from '../../firebaseConfig';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const VideoCall = () => {
   const [videoCall, setVideoCall] = useState(true);
   const route = useRoute();
-  const { channelId } = route.params;
+  const { channelId, consultationId } = route.params;
   const navigation = useNavigation();
 
   const rtcCallbacks = {
-    EndCall: () => {
+    EndCall: async () => {
       setVideoCall(false);
+      await endCall();
       navigation.navigate('Consult');
     },
+  };
+
+  const endCall = async () => {
+    try {
+      const consultationDocRef = doc(db, 'Consultations', consultationId);
+      await updateDoc(consultationDocRef, {
+        endCall: new Date(), 
+      });
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
   };
 
   const connectionData = {
@@ -28,7 +42,7 @@ const VideoCall = () => {
       dimensions: { width: 720, height: 1280 },
       frameRate: 30,
       bitrate: 1,
-      orientationMode: 'fixedPortrait', 
+      orientationMode: 'fixedPortrait',
     },
   };
 
