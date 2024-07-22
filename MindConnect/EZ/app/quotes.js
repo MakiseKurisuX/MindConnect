@@ -5,7 +5,7 @@ import { COLORS, images } from '../constants';
 import { ScreenHeaderBtn } from '../components';
 import { styles, zackStyles } from '../styles';
 import QuotesPage from '../components/quotes/quotesPage';
-import * as Notifications from 'expo-notifications'; // Import Notifications module
+import * as Notifications from 'expo-notifications'; 
 
 export default function Page() {
   const router = useRouter();
@@ -21,12 +21,12 @@ export default function Page() {
   }, []);
 
   const requestPermissions = async () => {
-    // Use Notifications module to request permissions
     const settings = await Notifications.requestPermissionsAsync();
     return settings.granted;
   };
 
   const scheduleDailyNotification = async () => {
+    //await Notifications.cancelAllScheduledNotificationsAsync();
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Good Morning",

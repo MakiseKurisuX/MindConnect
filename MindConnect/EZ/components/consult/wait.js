@@ -19,13 +19,13 @@ const WaitPage = () => {
         const docSnap = await getDoc(consultationDocRef);
         if (docSnap.exists() && docSnap.data().status === 'waiting') {
           await deleteDoc(consultationDocRef);
-          Alert.alert("Request Timeout", "No counselor accepted your request within 15 minutes. Please try again.");
+          Alert.alert("Request Timeout", "No counselor is available at the moment. Please try again later.");
           navigation.navigate('Consult'); 
         }
       } catch (error) {
         console.error("Error deleting document: ", error);
       }
-    }, 900000); 
+    }, 900000); //900000
 
     const unsubscribe = onSnapshot(consultationDocRef, (doc) => {
       if (doc.exists()) {
