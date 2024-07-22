@@ -18,7 +18,9 @@ const ConsultHistory = () => {
         const q = query(consultsRef, where('userId', 'array-contains', user.uid));
 
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          const consultData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          const consultData = querySnapshot.docs
+            .filter(doc => doc.data().status === 'accepted' && doc.data().endCall) 
+            .map(doc => ({ id: doc.id, ...doc.data() }));
           callback(consultData);
         });
 
@@ -47,7 +49,9 @@ const ConsultHistory = () => {
   const renderItem = ({ item }) => (
     <View style={styles.consultItem}>
       <Text style={styles.consultName}>{item.topic}</Text>
-      <Text style={styles.consultDuration}>Consult Duration: {formatDuration(item.createdAt, item.endCall)}</Text>
+      {item.status === 'accepted' && item.endCall && (
+        <Text style={styles.consultDuration}>Consult Duration: {formatDuration(item.createdAt, item.endCall)}</Text>
+      )}
       <Text style={styles.consultDescription}>{item.description}</Text>
     </View>
   );
