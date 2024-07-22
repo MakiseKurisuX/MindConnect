@@ -91,6 +91,8 @@ export default function TabViewExample() {
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: 'green',
+    borderRadius: 8,
+
   },
   indicator: {
     backgroundColor: 'white',

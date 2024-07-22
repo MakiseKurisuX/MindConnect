@@ -71,9 +71,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   consultItem: {
-    padding: 20,
+    padding: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: 'white',
   },
   consultName: {
     fontSize: 18,
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
   },
   consultDuration: {
     fontSize: 14,
-    color: 'gray',
+    color: 'black',
     marginTop: 4,
   },
   consultDescription: {
     fontSize: 14,
-    color: 'gray',
+    color: 'black',
     marginTop: 4,
   },
 });
