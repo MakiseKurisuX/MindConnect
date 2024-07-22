@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   chatDescription: {
     fontSize: 14,
-    color: 'gray',
+    color: 'dimgray',
     marginTop: 4,
   },
 });

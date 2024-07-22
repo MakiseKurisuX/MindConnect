@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   consultDescription: {
     fontSize: 14,
-    color: 'black',
+    color: 'dimgray',
     marginTop: 4,
   },
 });
