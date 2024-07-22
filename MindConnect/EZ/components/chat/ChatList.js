@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   chatItem: {
-    padding: 20,
+    padding: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: 'white',
   },
   chatName: {
     fontSize: 18,
