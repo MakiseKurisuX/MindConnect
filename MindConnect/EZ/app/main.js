@@ -19,7 +19,7 @@ export default function Page() {
           headerShadowVisible: false,
 
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
+            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%"/>
           ),
           headerTitle: () => (
             <Text style={enhancedStyles.headerTitle}>MINDCONNECT</Text>

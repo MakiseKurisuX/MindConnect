@@ -90,13 +90,15 @@ export default function TabViewExample() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: '#32CD32', 
+    backgroundColor: 'green',
   },
   indicator: {
-    backgroundColor: 'white', 
+    backgroundColor: 'white',
+    height: 4,
   },
   label: {
-    color: 'white', 
+    color: 'white',
+    fontSize: 16,
   },
   loadingContainer: {
     flex: 1,

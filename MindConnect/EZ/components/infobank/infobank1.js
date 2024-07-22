@@ -105,9 +105,12 @@ const styles = StyleSheet.create({
     flexDirection:"row",
   },
   search: {
-    marginLeft: 5,
-    height: 50,
-    width:260,
+    paddingLeft: 5,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    height: 48,
+    width:278,
+    backgroundColor: "#BEFFA2"
   },
   button: {
     paddingRight: 10,
