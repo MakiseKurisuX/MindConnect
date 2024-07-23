@@ -103,11 +103,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
   },
   requestor: {
-    fontSize: 14,
-    color: 'darkgrey',
+    fontSize: 16,
+    color: 'gray',
     marginTop: 4,
   },
 });

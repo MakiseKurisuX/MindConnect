@@ -50,7 +50,7 @@ const ConsultHistory = () => {
     <View style={styles.consultItem}>
       <Text style={styles.consultName}>{item.topic}</Text>
       {item.status === 'accepted' && item.endCall && (
-        <Text style={styles.consultDuration}>Consult Duration: {formatDuration(item.createdAt, item.endCall)}</Text>
+        <Text style={styles.consultDuration}>Duration: {formatDuration(item.createdAt, item.endCall)}</Text>
       )}
       <Text style={styles.consultDescription}>{item.description}</Text>
     </View>
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   consultItem: {
-    padding: 12,
+    paddingLeft: 10,
+    paddingBottom: 6,
+    paddingTop: 1,
     borderBottomWidth: 1,
     borderBottomColor: 'white',
   },
@@ -80,12 +82,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   consultDuration: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'black',
     marginTop: 4,
   },
   consultDescription: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'dimgray',
     marginTop: 4,
   },

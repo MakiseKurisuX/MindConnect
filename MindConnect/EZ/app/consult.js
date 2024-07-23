@@ -1,10 +1,10 @@
-import { Text, View, ScrollView, SafeAreaView, Image } from 'react-native';
+import { Text, View, SafeAreaView, Image } from 'react-native';
 import { Stack, useRouter, Link } from 'expo-router';
 import { useState } from 'react';
 import * as React from 'react';
 import { COLORS, icons, images, SIZES } from '../constants';
 import { ScreenHeaderBtn } from '../components';
-import { styles, zackStyles } from '../styles';
+import { zackStyles } from '../styles';
 import 'expo-dev-client';
 import AgoraUIKit, {PropsInterface} from 'agora-rn-uikit';
 import ConsultMain from '../components/consult/consultMain';
@@ -28,13 +28,9 @@ export default function Page() {
           ),
         }}
       />
-
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.scrollView}>
+        <View style={{flex: 1, padding:10}}>
           <ConsultMain />
         </View>
-      </ScrollView>
-      
     </SafeAreaView>
   );
 }

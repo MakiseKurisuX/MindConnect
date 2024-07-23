@@ -109,8 +109,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
     height: 48,
-    width:278,
-    backgroundColor: "#BEFFA2"
+
   },
   button: {
     paddingRight: 10,

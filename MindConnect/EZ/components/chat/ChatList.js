@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   chatDescription: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'dimgray',
     marginTop: 4,
   },
