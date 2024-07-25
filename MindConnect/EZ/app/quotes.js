@@ -26,7 +26,7 @@ export default function Page() {
   };
 
   const scheduleDailyNotification = async () => {
-    //await Notifications.cancelAllScheduledNotificationsAsync();
+    await Notifications.cancelAllScheduledNotificationsAsync();
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Good Morning",
