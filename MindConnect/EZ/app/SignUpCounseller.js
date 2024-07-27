@@ -47,7 +47,7 @@ const SignUpCounsellor = () => {
       linkedIn,
     };
 
-    emailjs.send('service_dm5skog', 'template_8m7o0mg', templateParams, 'pTYwjX4ZDqcpHSaqK')
+    emailjs.send('service_dm5skog', 'template_8m7o0mg', templateParams, 'y8mVp1Qobh2WhsLtM')
       .then((response) => {
         Alert.alert("Success", "Registration has been sent! Please wait up to 3 working days and check your email to see if you have been accepted or not!");
       })
